@@ -1,14 +1,14 @@
-package cs.sample;
+package com.jt;
 
 import java.io.IOException;
 
-import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.log4j.Logger;
+import org.bson.BSONObject;
 
 public class SampleMapper extends
-        Mapper<LongWritable, Text, Text, VehicleRecord> {
+        Mapper<Object, BSONObject, Text, VehicleRecord> {
 
     static Logger log = Logger.getLogger(SampleMapper.class.getName());
 
@@ -29,11 +29,23 @@ public class SampleMapper extends
     }
 
     @Override
-    protected void map(LongWritable key, Text value, Context context)
+    protected void map(Object key, BSONObject value, Context context)
             throws IOException, InterruptedException {
-
-        // load writablecomparable to use throughout
-        vehicleRecord.loadText(value);
+    	
+    	log.info("Key is: " + key);
+    	log.info("Key type is: " + key.getClass().getName());
+    	log.info("Value is: " + value);
+    	
+    	
+    	Text msg = new Text();
+//      bBuff = new String();
+        vehicleRecord = new VehicleRecord();
+//      filterModel = context.getConfiguration().get(SampleDriver.COMPANY_FILTER, "AMC");
+        vehicleRecord.setCompany(value.get(VehicleRecord.COMPANY).toString());
+        vehicleRecord.setModel(value.get(VehicleRecord.MODEL).toString());
+        vehicleRecord.setType(value.get(VehicleRecord.TYPE).toString());
+        vehicleRecord.setYear(Integer.parseInt(value.get(VehicleRecord.YEAR).toString()));
+        
         log.info("Vehicle info: " + vehicleRecord.year);
 
         // lets count the number of each company
@@ -56,9 +68,10 @@ public class SampleMapper extends
     @Override
     protected void setup(Context context) throws IOException,
             InterruptedException {
-        bBuff = new String();
-        vehicleRecord = new VehicleRecord();
-        filterModel = context.getConfiguration().get(SampleDriver.COMPANY_FILTER, "AMC");
+    	log.info("Mapper setup:");
+    	vehicleRecord = new VehicleRecord();
+    	
+    	
     }
 
 }

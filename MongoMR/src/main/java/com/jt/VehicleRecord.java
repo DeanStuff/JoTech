@@ -1,4 +1,4 @@
-package cs.sample;
+package com.jt;
 
 import java.io.DataInput;
 import java.io.DataOutput;
@@ -12,6 +12,11 @@ import org.apache.hadoop.io.WritableComparable;
 
 public class VehicleRecord implements WritableComparable {
 
+	public static final String YEAR = "Year";
+	public static final String COMPANY = "Company";
+	public static final String MODEL = "Model";
+	public static final String TYPE = "Type";
+	
     public int year;
     public String company;
     public String model;
@@ -73,7 +78,24 @@ public class VehicleRecord implements WritableComparable {
     }
 
 
-    public String toLog() {
+    
+    public void setYear(int year) {
+		this.year = year;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String toLog() {
         return "Company: " + company + "  Model: " + model + "  Type: " + type + "  Year: " + year;
     }
 

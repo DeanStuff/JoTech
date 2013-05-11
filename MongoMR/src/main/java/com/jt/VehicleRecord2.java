@@ -1,4 +1,4 @@
-package cs.sample;
+package com.jt;
 
 import java.io.DataInput;
 import java.io.DataOutput;

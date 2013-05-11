@@ -1,4 +1,4 @@
-package cs.sample;
+package com.jt;
 
 public enum Vehicle {
     COMPANY, 
