@@ -37,10 +37,7 @@ public class SampleMapper extends
     	log.info("Value is: " + value);
     	
     	
-    	Text msg = new Text();
-//      bBuff = new String();
         vehicleRecord = new VehicleRecord();
-//      filterModel = context.getConfiguration().get(SampleDriver.COMPANY_FILTER, "AMC");
         vehicleRecord.setCompany(value.get(VehicleRecord.COMPANY).toString());
         vehicleRecord.setModel(value.get(VehicleRecord.MODEL).toString());
         vehicleRecord.setType(value.get(VehicleRecord.TYPE).toString());
