@@ -18,7 +18,6 @@ public class SampleDriver extends Configured implements Tool {
     public final static String COMPANY_FILTER = "filter.exclude.company";
     public final static String MODEL_FILTER = "filter.exclude.model";
 
-    @Override
     public int run(String[] args) throws Exception {
         Job job = new Job();
 
