@@ -39,7 +39,7 @@ public class SampleMapper extends
         // lets count the number of each company
         // that is found in the file and only display
         // it in the job tracker stats
-        context.getCounter("Company", vehicleRecord.getCompany()).increment(1);
+//        context.getCounter("Company", vehicleRecord.getCompany()).increment(1);
 
         // If ya want to filter out manufactures or other types of records
         // then do it here so the follow on doesn't have to wait cycles on it
